@@ -11,15 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
 
 public class Dashboard {
 
 	private JFrame frame;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -88,19 +85,37 @@ public class Dashboard {
 		
 		JTextArea txtrProjects = new JTextArea();
 		txtrProjects.setColumns(3);
-		txtrProjects.setText("Projects");
-		txtrProjects.setBounds(201, 11, 830, 370);
+		txtrProjects.setText("Employees");
+		txtrProjects.setBounds(198, 11, 245, 370);
 		txtrProjects.setLineWrap(true);
 		frame.getContentPane().add(txtrProjects);
 		
-		table = new JTable();
-		table.setBackground(Color.LIGHT_GRAY);
-		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		table.setBounds(220, 23, 725, 345);
-		frame.getContentPane().add(table);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(1014, 23, 17, 358);
-		frame.getContentPane().add(scrollBar);
+		JTextArea txtrDepartments = new JTextArea();
+		txtrDepartments.setText("Departments");
+		txtrDepartments.setLineWrap(true);
+		txtrDepartments.setColumns(3);
+		txtrDepartments.setBounds(479, 11, 245, 370);
+		frame.getContentPane().add(txtrDepartments);
+		
+		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setText("Projects");
+		textArea_1.setLineWrap(true);
+		textArea_1.setColumns(3);
+		textArea_1.setBounds(759, 11, 245, 370);
+		frame.getContentPane().add(textArea_1);
+		
+		JScrollBar scrollBar_1 = new JScrollBar();
+		scrollBar_1.setBounds(444, 11, 17, 370);
+		frame.getContentPane().add(scrollBar_1);
+		
+		JScrollBar scrollBar_2 = new JScrollBar();
+		scrollBar_2.setBounds(724, 11, 17, 370);
+		frame.getContentPane().add(scrollBar_2);
+		
+		JScrollBar scrollBar_3 = new JScrollBar();
+		scrollBar_3.setBounds(1004, 11, 17, 370);
+		frame.getContentPane().add(scrollBar_3);
+		
 	}
 }

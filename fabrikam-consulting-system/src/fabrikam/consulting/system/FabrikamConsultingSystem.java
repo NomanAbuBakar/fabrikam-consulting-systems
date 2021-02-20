@@ -1,23 +1,13 @@
 package fabrikam.consulting.system;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import fabrikam.consulting.system.models.Department;
 import fabrikam.consulting.system.models.Employee;
 import fabrikam.consulting.system.models.Project;
-import fabrikam.consulting.system.views.EmployeeView;
 
 public class FabrikamConsultingSystem {
 	
