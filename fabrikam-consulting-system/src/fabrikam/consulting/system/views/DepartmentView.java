@@ -44,6 +44,15 @@ public class DepartmentView {
 	public DepartmentView() {
 		initialize();
 	}
+	
+	public void trigger() {
+		try {
+			DepartmentView window = new DepartmentView();
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -59,7 +68,7 @@ public class DepartmentView {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Departments");
+		JLabel lblNewLabel = new JLabel("Deparments");
 		lblNewLabel.setBounds(10, 21, 156, 36);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 12));
@@ -67,11 +76,11 @@ public class DepartmentView {
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		panel.add(lblNewLabel);
 		
-		JButton btnNewButton_1 = new JButton("Add Department");
+		JButton btnNewButton_1 = new JButton("Add Employee");
 		btnNewButton_1.setBounds(10, 62, 156, 48);
 		panel.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Update Department");
+		JButton btnNewButton_2 = new JButton("Update Employee");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -79,7 +88,7 @@ public class DepartmentView {
 		btnNewButton_2.setBounds(10, 121, 156, 48);
 		panel.add(btnNewButton_2);
 		
-		JButton btnNewButton = new JButton("Delete Department");
+		JButton btnNewButton = new JButton("Remove Employee");
 		btnNewButton.setBounds(10, 180, 156, 48);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,27 +103,42 @@ public class DepartmentView {
 		JTextArea txtrProjects = new JTextArea();
 		txtrProjects.setColumns(3);
 		txtrProjects.setText("Projects");
-		txtrProjects.setBounds(487, 22, 506, 344);
+		txtrProjects.setBounds(502, 22, 488, 344);
 		txtrProjects.setLineWrap(true);
 		frame.getContentPane().add(txtrProjects);
 		
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(995, 139, 17, 344);
+		scrollBar.setBounds(990, 22, 17, 344);
 		frame.getContentPane().add(scrollBar);
 		
 		textField = new JTextField();
-		textField.setBounds(219, 88, 219, 29);
+		textField.setBounds(219, 82, 239, 29);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(219, 159, 219, 29);
+		textField_1.setBounds(219, 140, 239, 29);
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(219, 229, 219, 29);
+		textField_2.setBounds(219, 198, 239, 29);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Name");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(219, 64, 219, 14);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblName = new JLabel("Budget");
+		lblName.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblName.setBounds(219, 122, 219, 14);
+		frame.getContentPane().add(lblName);
+		
+		JLabel lblSalary = new JLabel("Project Names (Comma Seperated)");
+		lblSalary.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblSalary.setBounds(219, 180, 219, 14);
+		frame.getContentPane().add(lblSalary);
 	}
 }

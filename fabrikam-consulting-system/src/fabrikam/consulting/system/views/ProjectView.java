@@ -30,7 +30,16 @@ public class ProjectView {
 	public ProjectView() {
 		initialize();
 	}
-
+	
+	public void trigger() {
+		try {
+			ProjectView window = new ProjectView();
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */

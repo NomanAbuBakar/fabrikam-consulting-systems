@@ -45,6 +45,15 @@ public class EmployeeView {
 	public EmployeeView() {
 		initialize();
 	}
+	
+	public void trigger() {
+		try {
+			EmployeeView window = new EmployeeView();
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Initialize the contents of the frame.
