@@ -12,13 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.text.BadLocationException;
 
 import fabrikam.consulting.system.data.layer.AbstractDataLayer;
@@ -37,7 +34,6 @@ public class EmployeeView {
 	private List<Employee> employees = null;
 	private List<Department> departments = null;
 	private List<Project> projects = null;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -310,13 +306,5 @@ public class EmployeeView {
 			}
 		}
 		return false;
-	}
-	
-	private void insertTableRow(DefaultTableModel model) {
-		if (!Utilities.isNullOrEmptyCollection(this.employees)) {
-			for (Employee employee : this.employees) {
-				model.insertRow(model.getRowCount(), new Object[] {employee.getName(), employee.getSalary(), "P1"});
-			}
-		}
 	}
 }

@@ -13,13 +13,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.text.BadLocationException;
 
 import fabrikam.consulting.system.data.layer.AbstractDataLayer;
@@ -37,7 +34,6 @@ public class DepartmentView {
 	private List<Employee> employees = null;
 	private List<Department> departments = null;
 	private List<Project> projects = null;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -127,6 +123,10 @@ public class DepartmentView {
 				department.setBudget(Double.valueOf(textField_1.getText().trim()));
 				if (!Utilities.isNullOrEmptyCollection(projects)) {
 					department.setProjects(projects);
+				}
+				if (ifAlreadyExist(department.getName())) {
+					JOptionPane.showMessageDialog(frame, "Department Already Exists!");
+					return;
 				}
 				departments = dl.addDepartment(departments, department);
 				refresh();
@@ -299,13 +299,5 @@ public class DepartmentView {
 			}
 		}
 		return false;
-	}
-	
-	private void insertTableRow(DefaultTableModel model) {
-		if (!Utilities.isNullOrEmptyCollection(this.departments)) {
-			for (Department department : this.departments) {
-				model.insertRow(model.getRowCount(), new Object[] {department.getName(), department.getBudget().toString(), department.getProjects().get(0).getName().toString()});
-			}
-		}
 	}
 }

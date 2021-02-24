@@ -34,13 +34,13 @@ public class FabrikamConsultingSystem {
 		p.setDepartment(d);
 		p.setEmployees(employees);
 		
-		p1.setProjectId(1);
+		p1.setProjectId(2);
 		p1.setName("P2");
 		p1.setBudget(10000.00);
 		p1.setDepartment(d);
 		p1.setEmployees(employees);
 		
-		p2.setProjectId(1);
+		p2.setProjectId(3);
 		p2.setName("P3");
 		p2.setBudget(10000.00);
 		p2.setDepartment(d);

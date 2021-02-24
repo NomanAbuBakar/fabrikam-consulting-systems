@@ -359,22 +359,21 @@ public class DataLayerImpl extends AbstractDataLayer {
 			System.out.println("project can't be added as project has been provided null!");
 			return;
 		}
-		if (Utilities.isNullOrEmptyString(project.getName())) {
-			System.out.println("Can't update project as project name has not been passed in request!");
-			return;
-		}
 		System.out.println("Going to update project with id: [" +project.getName()+ "]");
 		for (Project prjct : projects) {
-			if (project.getName().equalsIgnoreCase(prjct.getName())) {
-					if (!Utilities.validateIfNullOrInvalidDouble(project.getBudget())) {
-						prjct.setBudget(project.getBudget());
-					}
-					if (null != project.getDepartment()) {
-						prjct.setDepartment(project.getDepartment());
-					}
-					if (!Utilities.isNullOrEmptyCollection(project.getEmployees()) ) {
-						prjct.setEmployees(project.getEmployees());
-					}
+			if (project.getProjectId().toString().equalsIgnoreCase(prjct.getProjectId().toString())) {
+				if (!Utilities.isNullOrEmptyString(project.getName())) {
+					prjct.setName(project.getName());
+				}	
+				if (!Utilities.validateIfNullOrInvalidDouble(project.getBudget())) {
+					prjct.setBudget(project.getBudget());
+				}
+				if (null != project.getDepartment()) {
+					prjct.setDepartment(project.getDepartment());
+				}
+				if (!Utilities.isNullOrEmptyCollection(project.getEmployees()) ) {
+					prjct.setEmployees(project.getEmployees());
+				}
 			}
 		}
 	}
@@ -420,15 +419,10 @@ public class DataLayerImpl extends AbstractDataLayer {
 			System.out.println("Can't remove project has been provided null.");
 			return projects;
 		}
-		
-		if (Utilities.isNullOrEmptyString(project.getName())) {
-			System.out.println("Can't remove project as no project name has been passed in request!");
-			return projects;
-		}
 		System.out.println("Going to remove project with name: [" +project.getName()+ "");
 		filteredProjects = new ArrayList<>();
 		for (Project prjct : projects) {
-			if (!project.getName().equalsIgnoreCase(prjct.getName())) {
+			if (!project.getProjectId().toString().equalsIgnoreCase(prjct.getProjectId().toString())) {
 				filteredProjects.add(prjct);
 			}
 		}
