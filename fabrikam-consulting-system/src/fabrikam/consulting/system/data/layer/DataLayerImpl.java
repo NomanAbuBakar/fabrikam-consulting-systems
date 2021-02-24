@@ -46,6 +46,10 @@ public class DataLayerImpl extends AbstractDataLayer {
 			System.out.println("Can't return employee as no employees found in system.");
 			return null;
 		}
+		if (null == employee) {
+			System.out.println("Can't return employee as employee content not been passed in request!");
+			return null;
+		}
 		if (Utilities.validateIfNullOrInvalidInteger(employee.getEmployeeId())) {
 			System.out.println("Can't return employee as employee id has not been passed in request!");
 			return null;
@@ -53,11 +57,14 @@ public class DataLayerImpl extends AbstractDataLayer {
 		System.out.println("Going to update Employee with id: [" +employee.getEmployeeId()+ "]");
 		for (Employee emp : employees) {
 			if (employee.getEmployeeId().toString().equalsIgnoreCase(emp.getEmployeeId().toString())) {
-				if (Utilities.isNullOrEmptyString(employee.getName())) {
+				if (!Utilities.isNullOrEmptyString(employee.getName())) {
 					emp.setName(employee.getName());
 				}
 				if (!Utilities.validateIfNullOrInvalidDouble(employee.getSalary())) {
 					emp.setSalary(employee.getSalary());
+				}
+				if (null != employee.getProject()) {
+					emp.setProject(employee.getProject());
 				}
 				return emp;
 			}

@@ -1,12 +1,20 @@
 package fabrikam.consulting.system.views;
 
 import java.awt.EventQueue;
+import java.util.List;
 
 import javax.swing.JFrame;
+
+import fabrikam.consulting.system.models.Department;
+import fabrikam.consulting.system.models.Employee;
+import fabrikam.consulting.system.models.Project;
 
 public class ProjectView {
 
 	private JFrame frame;
+	private List<Employee> employees = null;
+	private List<Department> departments = null;
+	private List<Project> projects = null;
 
 	/**
 	 * Launch the application.
@@ -31,9 +39,15 @@ public class ProjectView {
 		initialize();
 	}
 	
-	public void trigger() {
+	public ProjectView(List<Employee> employees, List<Department> departments, List<Project> projects) {
+		this.employees = employees;
+		this.departments = departments;
+		this.projects = projects;
+		initialize();
+	}
+	
+	public void trigger(ProjectView window) {
 		try {
-			ProjectView window = new ProjectView();
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

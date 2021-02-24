@@ -15,7 +15,6 @@ import javax.swing.JScrollBar;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -28,6 +27,9 @@ import fabrikam.consulting.utils.Utilities;
 public class Dashboard {
 
 	private JFrame frame;
+	private List<Employee> employees = null;
+	private List<Department> departments = null;
+	private List<Project> projects = null;
 
 	/**
 	 * Launch the application.
@@ -53,9 +55,15 @@ public class Dashboard {
 		initialize();
 	}
 	
-	public void trigger() {
+	public Dashboard(List<Employee> employees, List<Department> departments, List<Project> projects) throws BadLocationException {
+		this.employees = employees;
+		this.departments = departments;
+		this.projects = projects;
+		initialize();
+	}
+	
+	public void trigger(Dashboard window) {
 		try {
-			Dashboard window = new Dashboard();
 			window.frame.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,9 +97,9 @@ public class Dashboard {
 		btnNewButton_1.setBounds(10, 62, 156, 48);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EmployeeView ev = new EmployeeView();
+				EmployeeView ev = new EmployeeView(employees, departments, projects);
 				frame.dispose();
-				ev.trigger();
+				ev.trigger(ev);
 			}
 		});
 		panel.add(btnNewButton_1);
@@ -100,9 +108,9 @@ public class Dashboard {
 		btnNewButton_2.setBounds(10, 121, 156, 48);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DepartmentView dv = new DepartmentView();
+				DepartmentView dv = new DepartmentView(employees, departments, projects);
 				frame.dispose();
-				dv.trigger();
+				dv.trigger(dv);
 			}
 		});
 		panel.add(btnNewButton_2);
@@ -111,9 +119,9 @@ public class Dashboard {
 		btnNewButton.setBounds(10, 180, 156, 48);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProjectView pv = new ProjectView();
+				ProjectView pv = new ProjectView(employees, departments, projects);
 				frame.dispose();
-				pv.trigger();
+				pv.trigger(pv);
 			}
 		});
 		panel.add(btnNewButton);
@@ -145,7 +153,7 @@ public class Dashboard {
 		alignCenterJTextPane(textPaneEmp);
 		setJTextPaneHeader(textPaneEmp, "Employees");
 		frame.getContentPane().add(textPaneEmp);
-		showEmployees(textPaneEmp, null);
+		showEmployees(textPaneEmp, employees);
 		
 		// Departments
 		JTextPane textPaneDpt = new JTextPane();
@@ -153,19 +161,16 @@ public class Dashboard {
 		alignCenterJTextPane(textPaneDpt);
 		setJTextPaneHeader(textPaneDpt, "Departments");
 		frame.getContentPane().add(textPaneDpt);
-		showDepartments(textPaneDpt, null);
+		showDepartments(textPaneDpt, departments);
 		
 		// Projects
-		JTextPane textPane_2 = new JTextPane();
-		textPane_2.setBounds(774, 11, 230, 370);
-		alignCenterJTextPane(textPane_2);
-		setJTextPaneHeader(textPane_2, "Projects");
-		textPane_2.setEditable(false);
-		showProjects(textPane_2, null);
-	    
-		
-		frame.getContentPane().add(textPane_2);
-		
+		JTextPane textPanePrjct = new JTextPane();
+		textPanePrjct.setBounds(774, 11, 230, 370);
+		alignCenterJTextPane(textPanePrjct);
+		setJTextPaneHeader(textPanePrjct, "Projects");
+		frame.getContentPane().add(textPanePrjct);
+		showProjects(textPanePrjct, projects);
+
 	}
 	
 	private void showEmployees(JTextPane jTextPane, List<Employee> employees) throws BadLocationException {
@@ -180,7 +185,7 @@ public class Dashboard {
 	}
 	
 	private void showDepartments(JTextPane jTextPane, List<Department> departments) throws BadLocationException {
-		StyledDocument document = new DefaultStyledDocument();
+		StyledDocument document = jTextPane.getStyledDocument();
 		SimpleAttributeSet attributes = new SimpleAttributeSet();
 		if (!Utilities.isNullOrEmptyCollection(departments)) {
 			for (Department department : departments) {
@@ -191,7 +196,7 @@ public class Dashboard {
 	}
 	
 	private void showProjects(JTextPane jTextPane, List<Project> projects) throws BadLocationException {
-		StyledDocument document = new DefaultStyledDocument();
+		StyledDocument document = jTextPane.getStyledDocument();;
 		SimpleAttributeSet attributes = new SimpleAttributeSet();
 		if (!Utilities.isNullOrEmptyCollection(projects)) {
 			for (Project project : projects) {
@@ -206,7 +211,7 @@ public class Dashboard {
 		SimpleAttributeSet attributes = new SimpleAttributeSet();
 		attributes.addAttribute(StyleConstants.CharacterConstants.Bold, Boolean.TRUE);
 		attributes.addAttribute(StyleConstants.CharacterConstants.Underline, Boolean.TRUE);
-		document.insertString(document.getLength(), header, attributes);
+		document.insertString(document.getLength(), header+"\n", attributes);
 		jTextPane.setDocument(document);
 	}
 	
